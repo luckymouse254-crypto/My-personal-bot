@@ -1,6 +1,14 @@
 import os, sys
 print("Checking setup...")
 
+# FREE WEB SERVICE - keep alive for Render free tier
+try:
+    from keep_alive import keep_alive
+    keep_alive()
+    print("🌐 Web server started for free hosting")
+except Exception as e:
+    print(f"Web server not started: {e}")
+
 # Check if telegram library exists, give friendly error
 try:
     from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
@@ -24,6 +32,8 @@ except ModuleNotFoundError:
     print("\n❌ ERROR: 'apscheduler' not found. Run: pip install -r requirements.txt")
     sys.exit(1)
 
+from brain import save_chat_id, log_expense, log_note, get_chat_id
+import automation
 from brain import save_chat_id, log_expense, log_note, get_chat_id
 import automation
 
